@@ -1,3 +1,29 @@
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+
+function  ArticleDetail() {
+  const [state, setState] = useState({});
+  const { articleId } = useParams();
+  
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_URL}api/react/article/${articleId}`)
+      .then((response) => {
+        // console.log(response.data.article)
+        setState(response.data.article);
+      });
+  },[] )
+
+  function handleChange(event) {
+    const { id, value } = event.target;
+    setState({
+        ...state,
+        [id]: value,
+        
+    })
+  }
+
+  return (
 <div className="container">
   <div className="row">
     <div className="col-md-6">
@@ -9,20 +35,21 @@
           <form>
             <div className="mb-3">
               <label htmlFor="title" className="form-label">文章名稱</label>
-              <input type="text" className="form-control" id="title" />
+              <input type="text" className="form-control" id="title" value={state.title} onChange={ handleChange } />
             </div>
             <div className="mb-3">
               <label htmlFor="author" className="form-label">文章作者</label>
-              <input type="text" className="form-control" id="author" />
+              <input type="text" className="form-control" id="author"  value={state.author} onChange={ handleChange } />
             </div>
             <div className="mb-3">
               <label htmlFor="content" className="form-label">文章描述</label>
-              <textarea className="form-control" id="content" />
+              <textarea className="form-control" id="content" value={state.content} onChange={ handleChange } />
             </div>
             <div className="row gx-1 mb-3">
               <div className="col-md-2 mb-1">
+                
                 <div className="input-group input-group-sm">
-                  <input type="text" className="form-control form-control" id="tag" placeholder="請輸入標籤" />
+                  <input type="text" className="form-control form-control" id="tag" placeholder="請輸入標籤"  value={state?.tag} />
                   <button type="button" className="btn btn-outline-danger">x</button>
                 </div>
               </div>
@@ -37,11 +64,16 @@
           <h5 className="card-title">文章圖片</h5>
         </div>
         <div className="card-body">
-          ...
-        </div>
+             
+              
+                <img src={state.image} className="rounded mb-2 me-2" alt="" style={{width: 150}} />
+              
+            </div>
       </div>
     </div>
   </div>
 
 
-</div>
+</div>)
+}
+export default ArticleDetail;
