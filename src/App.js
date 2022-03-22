@@ -13,13 +13,14 @@ import ArticleDetail from "./pages/ArticleDetail";
 function App() {
   
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/escape-react">
       <Nav/>
       <Routes>
-        <Route path="products" element={<Products />} />
-        <Route path="products/:productId" element={<ProductDetail />} />
-        <Route path="article" element={<Article />} />
-        <Route path="article/:articleId"  element={<ArticleDetail />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:productId" element={<ProductDetail />} />
+        <Route path="/" element={<Products />} />
+        <Route path="/article" element={<Article />} />
+        <Route path="/article/:articleId"  element={<ArticleDetail />} />
       </Routes>
     </BrowserRouter>
   )

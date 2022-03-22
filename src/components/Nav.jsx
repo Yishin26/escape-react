@@ -11,7 +11,7 @@ function Nav () {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to="/products" className="nav-link active" aria-current="page">產品列表</Link>
+                <Link to="/products" className="nav-link" aria-current="page">產品列表</Link>
               </li>
               <li className="nav-item">
                 <Link to="/article" className="nav-link">文章列表</Link>
